@@ -15,8 +15,14 @@ if (!fs.existsSync(signedDir)) {
   console.log("✅ Created /uploads/signed directory");
 }
 
+// ✅ CORS setup for Netlify frontend
+app.use(cors({
+  origin: "https://<your-netlify-site>.netlify.app", // Replace with actual Netlify URL
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true
+}));
+
 // ✅ Middleware
-app.use(cors());
 app.use(express.json());
 
 // ✅ Serve static files from uploads directory
